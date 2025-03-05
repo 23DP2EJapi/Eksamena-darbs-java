@@ -1,5 +1,8 @@
 package lv.rvt;
-//Nosaukums, Autors, Izlaisanas gads, Izdevejs
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+
 public class Gramatas {
     private String nosaukums;
     private String autors;
