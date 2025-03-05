@@ -14,6 +14,7 @@ public class Main
         Klients janis = new Klients("Jānis", "Bērziņš", "20202020");
         System.out.println(janis);
         Klients.addPerson(janis);
+        Gramatas.addBook(framata);
     
     }
 }
