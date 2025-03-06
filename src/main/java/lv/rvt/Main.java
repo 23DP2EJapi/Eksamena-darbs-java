@@ -28,6 +28,7 @@ public class Main
         }
 
         System.out.println(Klients.getPersonsLists());
+        System.out.println(Gramatas.getBookLists());
     
     }
 }

@@ -3,6 +3,7 @@ package lv.rvt;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 
 import lv.rvt.tools.Helper;
 
@@ -27,6 +28,27 @@ public class Gramatas {
         writer.write(gramata.getname(gramata));
         writer.close();
 
+    }
+
+    public static ArrayList<Gramatas> getBookLists() throws  Exception
+    {
+        BufferedReader reader = Helper.getReader("Gramatas.csv");
+        ArrayList<Gramatas> books = new ArrayList<>();
+        String line;
+        line = reader.readLine();        
+        
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(", ");
+
+            Gramatas book = new Gramatas(
+                parts[0], parts[1], Integer.valueOf(parts[2]), parts[3] );
+                books.add(book);
+                
+        }
+
+        return books;
+
+            
     }
 
     public String getname(Gramatas gramata){
