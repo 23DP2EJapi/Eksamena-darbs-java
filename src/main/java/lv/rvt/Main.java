@@ -9,13 +9,13 @@ public class Main
 {
     public static void main( String[] args ) throws Exception
     {
-        Gramatas framata = new Gramatas("asdas", "Jony Asdea", 1999, "ABC");
+        /*Gramatas framata = new Gramatas("asdas", "Jony Asdea", 1999, "ABC");
         System.out.println(framata);
 
-        Klients janis = new Klients("Jānis", "Bērziņš", "20202020");
         System.out.println(janis);
         Klients.addPerson(janis);
-        Gramatas.addBook(framata);
+        Gramatas.addBook(framata);*/
+        Klients janis = new Klients("Jānis", "Bērziņš", "20202020");
         LocalDate date1 = LocalDate.of(2024, 1, 1);
         LocalDate date2 = LocalDate.now();
 
@@ -29,6 +29,8 @@ public class Main
 
         System.out.println(Klients.getPersonsLists());
         System.out.println(Gramatas.getBookLists());
+        System.out.println(Klients.findperson("Jānis"));
+       
     
     }
 }

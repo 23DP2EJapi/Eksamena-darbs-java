@@ -2,6 +2,7 @@ package lv.rvt;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.lang.reflect.Array;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class Klients {
     private String vards;
     private String uzvards;
     private String kontakinfo;
-    private static final String delimiter = ", ";
+
 
     public Klients(String Vards, String Uzvards, String info){
         this.vards = Vards;
@@ -24,17 +25,26 @@ public class Klients {
         BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.APPEND);
 
         writer.newLine();
-        writer.write(vards.getname(vards));
+        writer.write(vards.toString());
         writer.close();
 
     }
 
-    public String getname(Klients andris){
-        return this.vards + ", " + this.uzvards + ", " + this.kontakinfo;
+    public String getname(){
+        return this.vards;
     }
 
-    public Klients findperson(Klients vards){
-        return vards; 
+    public static ArrayList<Klients> findperson(String vards)throws Exception{
+        ArrayList<Klients> masivs = getPersonsLists();
+        ArrayList<Klients> mekletajs = new ArrayList<Klients>();
+
+        for (Klients value : masivs) {
+  
+            if (value.getname().equals(vards)) {
+                
+                mekletajs.add(value);
+            }}
+        return mekletajs;
     }
 
     public static ArrayList<Klients> getPersonsLists() throws  Exception
