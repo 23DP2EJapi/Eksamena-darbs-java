@@ -3,6 +3,7 @@ package lv.rvt;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.time.LocalDate;
 
 public class Main 
 {
@@ -15,6 +16,18 @@ public class Main
         System.out.println(janis);
         Klients.addPerson(janis);
         Gramatas.addBook(framata);
+        LocalDate date1 = LocalDate.of(2024, 1, 1);
+        LocalDate date2 = LocalDate.now();
+
+        if (date1.isBefore(date2)) {
+            System.out.println(date1 + " is before " + date2);
+        } else if (date1.isAfter(date2)) {
+            System.out.println(date1 + " is after " + date2);
+        } else {
+            System.out.println("Both dates are the same");
+        }
+
+        System.out.println(Klients.getPersonsLists());
     
     }
 }
