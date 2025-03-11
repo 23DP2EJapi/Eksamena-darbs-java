@@ -5,8 +5,11 @@ import java.io.BufferedWriter;
 import java.lang.reflect.Array;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-
 import lv.rvt.tools.Helper;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Klients {
     
@@ -66,6 +69,27 @@ public class Klients {
         return persons;
 
             
+    }
+
+    public static void deletePerson(Klients persona) throws  Exception{
+        ArrayList<Klients> Glabātuve = getPersonsLists();
+        ArrayList<Klients> helper = new ArrayList<>();
+     
+       
+        for (Klients klients : Glabātuve) {
+            if (klients.getname().equals(persona.getname())) {
+                continue;
+            }else{
+                helper.add(klients);
+            }
+            
+        }
+        
+        int b = helper.size();
+        /*for(int a = 0; a < b; a++){
+            addPerson(helper.get(a));
+        }*/
+        
     }
 
     @Override

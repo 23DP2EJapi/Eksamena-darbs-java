@@ -18,6 +18,7 @@ public class Main
         Klients janis = new Klients("Jānis", "Bērziņš", "20202020");
         LocalDate date1 = LocalDate.of(2024, 1, 1);
         LocalDate date2 = LocalDate.now();
+        Klients persona = new Klients("Zane", "Liepa", "20212020");
 
         if (date1.isBefore(date2)) {
             System.out.println(date1 + " is before " + date2);
@@ -29,10 +30,6 @@ public class Main
 
         System.out.println(Klients.getPersonsLists());
         System.out.println(Gramatas.getBookLists());
-        System.out.println(Klients.findperson("Zane"));
-        System.out.println(Gramatas.findbook("Vinijs pūks"));
-  
-       
-    
+        Klients.deletePerson(persona);
     }
 }
