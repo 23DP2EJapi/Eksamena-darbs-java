@@ -25,7 +25,7 @@ public class Gramatas {
         BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.APPEND);
 
         writer.newLine();
-        writer.write(gramata.getname(gramata));
+        writer.write(gramata.getnosaukums(gramata));
         writer.close();
 
     }
@@ -51,13 +51,33 @@ public class Gramatas {
             
     }
 
-    public String getname(Gramatas gramata){
+    public static ArrayList<Gramatas> findbook(String vards)throws Exception{
+        ArrayList<Gramatas> masivs = getBookLists();
+        ArrayList<Gramatas> mekletajs = new ArrayList<Gramatas>();
+
+        for (Gramatas value : masivs) {
+  
+            if (value.getname().equals(vards)) {
+                
+                mekletajs.add(value);
+            }}
+        return mekletajs;
+    }
+
+    public String getnosaukums(Gramatas gramata){
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs;
+    }
+
+
+    public String getname(){
+        return this.nosaukums;
     }
 
     public String toString(){
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs;
     }
+
+
 
 
 }

@@ -29,7 +29,9 @@ public class Main
 
         System.out.println(Klients.getPersonsLists());
         System.out.println(Gramatas.getBookLists());
-        System.out.println(Klients.findperson("Jānis"));
+        System.out.println(Klients.findperson("Zane"));
+        System.out.println(Gramatas.findbook("Vinijs pūks"));
+  
        
     
     }
