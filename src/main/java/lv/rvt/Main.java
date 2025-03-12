@@ -10,8 +10,12 @@ public class Main
     public static void main( String[] args ) throws Exception
     {
 
-        Klients persona = new Klients("Zane", "Liepa", "20212020");
-        Klients.deletePerson(persona);
+        //Klients persona = new Klients("Zane", "Liepa", "20212020");
+        //Klients.addPerson(persona);
+        //Klients.deletePerson(persona);
+        Gramatas a = new Gramatas("Bubieris", "Jony Asdea", 1999, "ABC"); 
+        Gramatas.addBook(a);
+        Gramatas.deleteBook(a);
 
       
     }

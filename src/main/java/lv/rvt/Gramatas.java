@@ -24,8 +24,8 @@ public class Gramatas {
     public static void addBook(Gramatas gramata) throws Exception{
         BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.APPEND);
 
+        writer.write(gramata.toString());
         writer.newLine();
-        writer.write(gramata.getnosaukums(gramata));
         writer.close();
 
     }
@@ -72,9 +72,34 @@ public class Gramatas {
     public String getname(){
         return this.nosaukums;
     }
-
+    @Override
     public String toString(){
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs;
+    }
+
+    public static void deleteBook(Gramatas persona) throws  Exception{
+        ArrayList<Gramatas> Glabātuve = getBookLists();
+        ArrayList<Gramatas> helper = new ArrayList<>();
+
+        BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.TRUNCATE_EXISTING);
+       
+        for (Gramatas klients : Glabātuve) {
+            if (klients.getname().equals(persona.getname())) {
+                
+            }else{
+                helper.add(klients);
+            }
+
+            
+        }
+        
+        
+        int b = helper.size();
+        for(int a = 0; a<=b;a++ ){
+            addBook(helper.get(a));
+        }
+     
+        
     }
 
 
