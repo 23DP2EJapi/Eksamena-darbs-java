@@ -3,6 +3,8 @@ package lv.rvt;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import lv.rvt.tools.Helper;
@@ -26,9 +28,8 @@ public class Klients {
 
     public static void addPerson(Klients vards) throws Exception{
         BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.APPEND);
-
-        writer.newLine();
         writer.write(vards.toString());
+        writer.newLine();
         writer.close();
 
     }
@@ -44,7 +45,6 @@ public class Klients {
         for (Klients value : masivs) {
   
             if (value.getname().equals(vards)) {
-                
                 mekletajs.add(value);
             }}
         return mekletajs;
@@ -55,7 +55,6 @@ public class Klients {
         BufferedReader reader = Helper.getReader("Klienti.csv");
         ArrayList<Klients> persons = new ArrayList<>();
         String line;
-        line = reader.readLine();        
         
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(", ");
@@ -65,30 +64,31 @@ public class Klients {
                 persons.add(person);
                 
         }
-
         return persons;
-
             
     }
 
     public static void deletePerson(Klients persona) throws  Exception{
         ArrayList<Klients> Glabātuve = getPersonsLists();
         ArrayList<Klients> helper = new ArrayList<>();
-     
+
+        BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.TRUNCATE_EXISTING);
        
         for (Klients klients : Glabātuve) {
             if (klients.getname().equals(persona.getname())) {
-                continue;
+                
             }else{
                 helper.add(klients);
             }
+
             
         }
         
         int b = helper.size();
-        /*for(int a = 0; a < b; a++){
+        for(int a = 0; a<=b;a++ ){
             addPerson(helper.get(a));
-        }*/
+        }
+     
         
     }
 
