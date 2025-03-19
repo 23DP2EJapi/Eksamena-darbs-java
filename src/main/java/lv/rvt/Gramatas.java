@@ -35,7 +35,7 @@ public class Gramatas {
         BufferedReader reader = Helper.getReader("Gramatas.csv");
         ArrayList<Gramatas> books = new ArrayList<>();
         String line;
-        line = reader.readLine();        
+       
         
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(", ");

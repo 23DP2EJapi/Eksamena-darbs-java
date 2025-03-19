@@ -32,7 +32,7 @@ public class Zurnali {
         BufferedReader reader = Helper.getReader("zurnali.csv");
         ArrayList<Zurnali> books = new ArrayList<>();
         String line;
-        line = reader.readLine();        
+
         
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(", ");
@@ -61,6 +61,31 @@ public class Zurnali {
 
     public String getname(){
         return this.nosaukums;
+    }
+//-----------------------------------------------------------------------------------------------------------------------------
+    public static void deletezurnals(Zurnali persona) throws  Exception{
+        ArrayList<Zurnali> Glabātuve = getZurnaliLists();
+        ArrayList<Zurnali> helper = new ArrayList<>();
+
+        BufferedWriter writer = Helper.getWriter("zurnali.csv", StandardOpenOption.TRUNCATE_EXISTING);
+       
+        for (Zurnali klients : Glabātuve) {
+            if (klients.getname().equals(persona.getname())) {
+                
+            }else{
+                helper.add(klients);
+            }
+
+            
+        }
+        
+        
+        int b = helper.size();
+        for(int a = 0; a<=b;a++ ){
+            addZurnals(helper.get(a));
+        }
+     
+        
     }
 
     @Override
