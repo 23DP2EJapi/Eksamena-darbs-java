@@ -62,7 +62,7 @@ public class Zurnali {
     public String getname(){
         return this.nosaukums;
     }
-//-----------------------------------------------------------------------------------------------------------------------------
+
     public static void deletezurnals(Zurnali persona) throws  Exception{
         ArrayList<Zurnali> Glabātuve = getZurnaliLists();
         ArrayList<Zurnali> helper = new ArrayList<>();

@@ -51,7 +51,7 @@ public class Gramatas {
             
     }
 
-    public static ArrayList<Gramatas> findbook(String vards)throws Exception{
+    public static ArrayList<Gramatas> findbookbynosaukums(String vards)throws Exception{
         ArrayList<Gramatas> masivs = getBookLists();
         ArrayList<Gramatas> mekletajs = new ArrayList<Gramatas>();
 
@@ -64,10 +64,26 @@ public class Gramatas {
         return mekletajs;
     }
 
+    public static ArrayList<Gramatas> findbookbyautors(String vards)throws Exception{
+        ArrayList<Gramatas> masivs = getBookLists();
+        ArrayList<Gramatas> mekletajs = new ArrayList<Gramatas>();
+
+        for (Gramatas value : masivs) {
+  
+            if (value.getautors().equals(vards)) {
+                
+                mekletajs.add(value);
+            }}
+        return mekletajs;
+    }
+
     public String getnosaukums(Gramatas gramata){
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs;
     }
 
+    public String getautors(){
+        return this.autors;
+    }
 
     public String getname(){
         return this.nosaukums;
