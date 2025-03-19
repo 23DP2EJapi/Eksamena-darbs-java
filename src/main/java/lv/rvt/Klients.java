@@ -93,28 +93,8 @@ public class Klients {
     }
 
     public static void editPerson(Klients persona, Klients jaunainformacija) throws  Exception{
-        ArrayList<Klients> Glabātuve = getPersonsLists();
-        ArrayList<Klients> helper = new ArrayList<>();
-
-        BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.TRUNCATE_EXISTING);
-       
-        for (Klients klients : Glabātuve) {
-            if (klients.getname().equals(persona.getname())) {
-                klients = jaunainformacija;
-                helper.add(klients);
-            }else{
-                helper.add(klients);
-            }
-
-            
-        }
-        
-        int b = helper.size();
-        for(int a = 0; a<=b;a++ ){
-            addPerson(helper.get(a));
-        }
-     
-        
+        deletePerson(persona);
+        addPerson(jaunainformacija);
     }
 
     @Override
