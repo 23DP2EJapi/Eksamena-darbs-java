@@ -27,6 +27,25 @@ public class Zurnali {
 
     }
 
+    public static ArrayList<Zurnali> getZurnāliLists() throws  Exception
+    {
+        BufferedReader reader = Helper.getReader("zurnali.csv");
+        ArrayList<Zurnali> books = new ArrayList<>();
+        String line;
+        line = reader.readLine();        
+        
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(", ");
+
+            Zurnali book = new Zurnali(
+                parts[0], parts[1] );
+                books.add(book);
+                
+        }
+
+        return books;
+    }
+
     @Override
     public String toString(){
         return this.nosaukums + ", " + this.datums;

@@ -19,7 +19,8 @@ public class Main
         //Gramatas.deleteBook(a);
         //Klients.editPerson(persona, persona2);
         Zurnali zurnals = new Zurnali("skljjfnkl", "10.12.2007");
-        Zurnali.addZurnals(zurnals);
+        //Zurnali.addZurnals(zurnals);
+        System.out.println(Zurnali.getZurnāliLists());
 
 
       
