@@ -20,9 +20,8 @@ public class Main
         //Klients.editPerson(persona, persona2);
         Zurnali zurnals = new Zurnali("skljjfnkl", "10.12.2007");
         //Zurnali.addZurnals(zurnals);
-        System.out.println(Zurnali.getZurnāliLists());
-
-
+        System.out.println(Zurnali.getZurnaliLists());
+        System.out.println(Zurnali.findZurnals("skljjfnkl"));
       
     }
 }

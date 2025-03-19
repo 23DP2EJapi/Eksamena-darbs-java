@@ -27,7 +27,7 @@ public class Zurnali {
 
     }
 
-    public static ArrayList<Zurnali> getZurnāliLists() throws  Exception
+    public static ArrayList<Zurnali> getZurnaliLists() throws  Exception
     {
         BufferedReader reader = Helper.getReader("zurnali.csv");
         ArrayList<Zurnali> books = new ArrayList<>();
@@ -44,6 +44,23 @@ public class Zurnali {
         }
 
         return books;
+    }
+
+    public static ArrayList<Zurnali> findZurnals(String vards)throws Exception{
+        ArrayList<Zurnali> masivs = getZurnaliLists();
+        ArrayList<Zurnali> mekletajs = new ArrayList<Zurnali>();
+
+        for (Zurnali value : masivs) {
+  
+            if (value.getname().equals(vards)) {
+                
+                mekletajs.add(value);
+            }}
+        return mekletajs;
+    }
+
+    public String getname(){
+        return this.nosaukums;
     }
 
     @Override
