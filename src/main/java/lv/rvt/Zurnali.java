@@ -67,25 +67,31 @@ public class Zurnali {
         ArrayList<Zurnali> Glabātuve = getZurnaliLists();
         ArrayList<Zurnali> helper = new ArrayList<>();
 
-        BufferedWriter writer = Helper.getWriter("zurnali.csv", StandardOpenOption.TRUNCATE_EXISTING);
-       
+        
         for (Zurnali klients : Glabātuve) {
             if (klients.getname().equals(persona.getname())) {
                 
             }else{
                 helper.add(klients);
             }
-
+            
             
         }
         
+        BufferedWriter writer = Helper.getWriter("zurnali.csv", StandardOpenOption.TRUNCATE_EXISTING);
         
         int b = helper.size();
         for(int a = 0; a<=b;a++ ){
             addZurnals(helper.get(a));
         }
-     
-        
+
+        writer.close();
+
+    }
+
+    public static void editZurnals(Zurnali persona, Zurnali jaunainformacija) throws  Exception{
+        addZurnals(jaunainformacija);
+        deletezurnals(persona);
     }
 
     @Override
