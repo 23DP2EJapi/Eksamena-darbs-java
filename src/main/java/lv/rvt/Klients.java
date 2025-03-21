@@ -2,16 +2,9 @@ package lv.rvt;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import lv.rvt.tools.Helper;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 
 public class Klients {
     
@@ -68,29 +61,24 @@ public class Klients {
             
     }
 
-    public static void deletePerson(Klients persona) throws  Exception{
+    public static void deletePerson(Klients persona) throws Exception {
         ArrayList<Klients> Glabātuve = getPersonsLists();
         ArrayList<Klients> helper = new ArrayList<>();
-
-        BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.TRUNCATE_EXISTING);
-       
+    
         for (Klients klients : Glabātuve) {
-            if (klients.getname().equals(persona.getname())) {
-                
-            }else{
+            if (!klients.getname().equals(persona.getname())) {
                 helper.add(klients);
             }
-
-            
         }
-        
-        int b = helper.size();
-        for(int a = 0; a<=b;a++ ){
-            addPerson(helper.get(a));
+    
+        BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.TRUNCATE_EXISTING);
+        for (Klients klients : helper) {
+            writer.write(klients.toString());
+            writer.newLine();
         }
-     
-        
+        writer.close();
     }
+    
 
     public static void editPerson(Klients persona, Klients jaunainformacija) throws  Exception{
         deletePerson(persona);

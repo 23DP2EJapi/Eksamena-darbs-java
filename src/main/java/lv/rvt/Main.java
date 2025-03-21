@@ -12,7 +12,7 @@ public class Main
 
         Klients persona = new Klients("Zane", "Liepa", "20212020");
         //Klients.addPerson(persona);
-        Klients persona2 = new Klients("Zane", "Liepa", "ZaneLiepa@gmail.com");
+        Klients persona2 = new Klients("Zzsdhn", "Liesd", "ZaneLiepa@gmail.com");
         //Klients.deletePerson(persona);
         //Gramatas a = new Gramatas("Bubieris", "Jony Asdea", 1999, "ABC"); 
         //Gramatas b = new Gramatas("ABC", "Jony Asdea", 1999, "ABC");
@@ -26,8 +26,13 @@ public class Main
         //Zurnali.deletezurnals(zurnals);
         //System.out.println(Zurnali.getZurnaliLists();
 
+        //Klients.addPerson(persona2);
+        //Klients.deletePerson(persona2);
+
         
 
       
     }
+
+    
 }
