@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import lv.rvt.tools.Helper;
 
@@ -58,6 +59,31 @@ public class Zurnali {
             }}
         return mekletajs;
     }
+
+    public static void shortByName() throws Exception{
+
+        ArrayList<Zurnali> personlist = Zurnali.getZurnaliLists();
+        personlist.sort(Comparator.comparing(Zurnali::getname));
+
+        for(Zurnali person : personlist){
+            System.out.println(person);
+        }
+    }
+
+    public static void shortByIzdosana() throws Exception{
+
+        ArrayList<Zurnali> personlist = Zurnali.getZurnaliLists();
+        personlist.sort(Comparator.comparing(Zurnali::getIzdosana));
+
+        for(Zurnali person : personlist){
+            System.out.println(person);
+        }
+    }
+
+    public String getIzdosana(){
+        return this.datums;
+    }
+
 
     public String getname(){
         return this.nosaukums;

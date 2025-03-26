@@ -34,8 +34,13 @@ public class Main
         //Klients.shortByFirstName();
         //Klients.shortByLastName();
 
-        Gramatas.shortByName();
-        Gramatas.shortByAuthor();
+        //Gramatas.shortByName();
+        //Gramatas.shortByAuthor();
+
+        Zurnali.shortByName();
+        Zurnali.shortByIzdosana();
+
+        
         
 
       
