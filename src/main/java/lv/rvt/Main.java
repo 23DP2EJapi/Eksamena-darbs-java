@@ -14,11 +14,11 @@ public class Main
         //Klients.addPerson(persona);
         //Klients persona2 = new Klients("Zzsdhn", "Liesd", "ZaneLiepa@gmail.com");
         //Klients.deletePerson(persona);
-        Gramatas a = new Gramatas("Bubieris", "Jony Asdea", 1999, "ABC"); 
-        Gramatas b = new Gramatas("ABC", "Jony Asdea", 1229, "ABC");
+        //Gramatas a = new Gramatas("Bubieris", "Jony Asdea", 1999, "ABC"); 
+        //Gramatas b = new Gramatas("ABC", "Jony Asdea", 1229, "ABC");
         //Gramatas.addBook(a);
         //Gramatas.deleteBook(a);
-        Gramatas.editbook(a, b);
+        //Gramatas.editbook(a, b);
         //Klients.editPerson(persona, persona2);
         //Zurnali zurnals = new Zurnali("skljjfnkl", "10.12.2007");
         //Zurnali.addZurnals(zurnals);
@@ -31,6 +31,8 @@ public class Main
         //Klients.addPerson(persona2);
         //Klients.deletePerson(persona2);
 
+        Klients.shortByFirstName();
+        Klients.shortByLastName();
         
 
       
