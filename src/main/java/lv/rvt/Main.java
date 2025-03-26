@@ -31,8 +31,11 @@ public class Main
         //Klients.addPerson(persona2);
         //Klients.deletePerson(persona2);
 
-        Klients.shortByFirstName();
-        Klients.shortByLastName();
+        //Klients.shortByFirstName();
+        //Klients.shortByLastName();
+
+        Gramatas.shortByName();
+        Gramatas.shortByAuthor();
         
 
       

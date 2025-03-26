@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import lv.rvt.tools.Helper;
 
@@ -20,6 +21,27 @@ public class Gramatas {
         this.izdevejs = Izdevejs;
         
     }
+
+    public static void shortByName() throws Exception{
+
+        ArrayList<Gramatas> personlist = Gramatas.getBookLists();
+        personlist.sort(Comparator.comparing(Gramatas::getname));
+
+        for(Gramatas person : personlist){
+            System.out.println(person);
+        }
+    }
+
+    public static void shortByAuthor() throws Exception{
+
+        ArrayList<Gramatas> personlist = Gramatas.getBookLists();
+        personlist.sort(Comparator.comparing(Gramatas::getautors));
+
+        for(Gramatas person : personlist){
+            System.out.println(person);
+        }
+    }
+
 
     public static void addBook(Gramatas gramata) throws Exception{
         BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.APPEND);
