@@ -49,7 +49,7 @@ public class Main
 
 
 
-        //Turetaj.takeBook(a, persona2, 14);
+        Turetaj.takeBook(a, persona2, 14);
 
 
   

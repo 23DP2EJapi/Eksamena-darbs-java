@@ -146,12 +146,11 @@ public class Gramatas {
                 helper.add(klients);
             }
 
-            
         }
         
         
         int b = helper.size();
-        for(int a = 0; a<=b;a++ ){
+        for(int a = 0; a<=b - 1;a++ ){
             Gramatas.addBook(helper.get(a));
         }
      
