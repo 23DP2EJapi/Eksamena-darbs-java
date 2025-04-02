@@ -55,6 +55,8 @@ public class Turetaj {
        }
     }
 
+
+
     public LocalDate pieejamiba(){
       return this.kontakinfo;
     }
@@ -63,6 +65,30 @@ public class Turetaj {
     public String toString(){
         return this.vards.toString() + " " + this.uzvards.toString() + ", " + this.kontakinfo + ", " + this.Termiņš;
     } 
+
+    public static String returnBook(Gramatas gramata, Klients janis, int ter) throws Exception{
+        LocalDate myObj = LocalDate.now();
+        if (Klients.findperson(janis) == false) {
+            System.out.println("Tādā persona netika atrasta");
+            return null;
+        } else if (Gramatas.findbook(gramata) == false) {
+            System.out.println("Grāmata nav pieejama");
+            return null;
+        }else 
+       if (gramata.Pieejamība().equals("Nepieejama")) {
+        addPerson(new Turetaj(janis.getFullName() + "," , gramata, myObj, ter));
+        
+        Gramatas.deleteBook(gramata);
+        gramata.pieejamiba = "Nepieejama";
+        Gramatas.addBook(gramata);     
+
+        System.out.println("Grāmata paņemta veiksmīgi");
+        return "Grāmata paņemta veiksmīgi";
+       } else{
+        System.out.println("Grāmata nav paņemta");
+        return "Grāmata nav paņemta";
+       }
+    }
 
 
 }

@@ -17,7 +17,7 @@ public class Main
         //Klients.deletePerson(persona);
         Gramatas a = new Gramatas("Bubieris", "Jony Asdea", 1999, "ABC", "Pieejama"); 
         //Gramatas b = new Gramatas("ABC", "Jony Asdea", 1229, "ABC");
-        Gramatas.addBook(a);
+        //Gramatas.addBook(a);
         //Gramatas.deleteBook(a);
         //Gramatas.editbook(a, b);
         //Klients.editPerson(persona, persona2);
@@ -49,7 +49,7 @@ public class Main
 
 
 
-        Turetaj.takeBook(a, persona2, 14);
+        //Turetaj.takeBook(a, persona2, 14);
 
 
   
