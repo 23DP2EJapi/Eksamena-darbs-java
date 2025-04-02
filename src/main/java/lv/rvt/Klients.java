@@ -45,6 +45,8 @@ public class Klients {
         return mekletajs;
     }
 
+
+
     public static ArrayList<Klients> getPersonsLists() throws  Exception
     {
         BufferedReader reader = Helper.getReader("Klienti.csv");
@@ -118,6 +120,19 @@ public class Klients {
     @Override
     public String toString(){
         return this.vards + ", " + this.uzvards + ", " + this.kontakinfo;
+    }
+
+
+    public static Boolean findperson(Klients janis)throws Exception{
+        ArrayList<Klients> masivs = getPersonsLists();
+        ArrayList<Klients> mekletajs = new ArrayList<Klients>();
+
+        for (Klients value : masivs) {
+  
+            if (value.getFullName().equals(janis.getFullName())) {
+                return true;
+            }}
+        return false;
     }
 
 }

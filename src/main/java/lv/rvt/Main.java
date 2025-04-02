@@ -46,8 +46,9 @@ public class Main
         
         //Turetaj.addPerson(ab);
         //System.out.println(ab);
-        Turetaj.takeBook(a, persona, 14);
-        
+        Turetaj.takeBook(a, persona2, 14);
+
+
   
         
     }

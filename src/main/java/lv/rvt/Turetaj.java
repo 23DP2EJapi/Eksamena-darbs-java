@@ -33,16 +33,16 @@ public class Turetaj {
 
     public static String takeBook(Gramatas gramata, Klients janis, int ter) throws Exception{
         LocalDate myObj = LocalDate.now();
+        if (Klients.findperson(janis) == false) {
+            System.out.println("Tādā persona netika atrasta");
+            return null;
+        }
        if (gramata.Pieejamība().equals("Pieejama")) {
         addPerson(new Turetaj(janis.getFullName() + "," , gramata, myObj, ter));
         return "Grāmata paņemta veiksmīgi";
        } else{
         return "Grāmata nav paņemta";
        }
-
-
-
-
     }
 
     public LocalDate pieejamiba(){
