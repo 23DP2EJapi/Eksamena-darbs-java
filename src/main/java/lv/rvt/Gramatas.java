@@ -13,14 +13,14 @@ public class Gramatas {
     private String autors;
     private int idosana;
     private String izdevejs;
-    private String pieejamiba;
+    protected String pieejamiba;
 
-    public Gramatas(String nosaukums, String autors, int Izlaisana, String Izdevejs){
+    public Gramatas(String nosaukums, String autors, int Izlaisana, String Izdevejs, String as){
         this.nosaukums = nosaukums;
         this.autors = autors;
         this.idosana = Izlaisana;
         this.izdevejs = Izdevejs;
-        this.pieejamiba = "Pieejama";
+        this.pieejamiba = as;
     }
 
     public static void shortByName() throws Exception{
@@ -64,7 +64,7 @@ public class Gramatas {
             String[] parts = line.split(", ");
 
             Gramatas book = new Gramatas(
-                parts[0], parts[1], Integer.valueOf(parts[2]), parts[3] );
+                parts[0], parts[1], Integer.valueOf(parts[2]), parts[3], parts[4]);
                 books.add(book);
                 
         }
@@ -152,7 +152,7 @@ public class Gramatas {
         
         int b = helper.size();
         for(int a = 0; a<=b;a++ ){
-            addBook(helper.get(a));
+            Gramatas.addBook(helper.get(a));
         }
      
         

@@ -42,8 +42,18 @@ public class Turetaj {
         }else 
        if (gramata.Pieejamība().equals("Pieejama")) {
         addPerson(new Turetaj(janis.getFullName() + "," , gramata, myObj, ter));
+        
+        
+        Gramatas gramata1 = gramata;
+        gramata1.pieejamiba = "Nepieejam";
+        Gramatas.addBook(gramata1);
+        Gramatas.deleteBook(gramata);
+    
+
+        System.out.println("Grāmata paņemta veiksmīgi");
         return "Grāmata paņemta veiksmīgi";
        } else{
+        System.out.println("Grāmata nav paņemta");
         return "Grāmata nav paņemta";
        }
     }
