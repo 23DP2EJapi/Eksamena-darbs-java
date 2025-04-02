@@ -13,13 +13,14 @@ public class Gramatas {
     private String autors;
     private int idosana;
     private String izdevejs;
+    private String pieejamiba;
 
     public Gramatas(String nosaukums, String autors, int Izlaisana, String Izdevejs){
         this.nosaukums = nosaukums;
         this.autors = autors;
         this.idosana = Izlaisana;
         this.izdevejs = Izdevejs;
-        
+        this.pieejamiba = "Pieejama";
     }
 
     public static void shortByName() throws Exception{
@@ -110,9 +111,14 @@ public class Gramatas {
     public String getname(){
         return this.nosaukums;
     }
+
+    public String Pieejamība(){
+        return this.pieejamiba;
+    }
+
     @Override
     public String toString(){
-        return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs;
+        return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs + ", " + this.pieejamiba;
     }
 
     public static void deleteBook(Gramatas persona) throws  Exception{

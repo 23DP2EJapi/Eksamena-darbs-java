@@ -3,20 +3,24 @@ package lv.rvt;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import lv.rvt.tools.Helper;
 
 public class Turetaj {
-    private Klients vards;
+    private String vards;
     private Gramatas uzvards;
-    private Boolean kontakinfo;
+    private LocalDate kontakinfo;
+    private int Termiņš;
 
-    public Turetaj(Klients Vards, Gramatas a, Boolean info){
+    public Turetaj(String Vards, Gramatas a, LocalDate info, int Termiņš){
         this.vards = Vards;
         this.uzvards = a;
         this.kontakinfo = info;
+        this.Termiņš = Termiņš;
+        
     }
 
         public static void addPerson(Turetaj vards) throws Exception{
@@ -27,13 +31,27 @@ public class Turetaj {
 
     }
 
-    public Boolean pieejamiba(){
-      return kontakinfo;
+    public static String takeBook(Gramatas gramata, Klients janis, int ter) throws Exception{
+        LocalDate myObj = LocalDate.now();
+       if (gramata.Pieejamība().equals("Pieejama")) {
+        addPerson(new Turetaj(janis.getFullName() + "," , gramata, myObj, ter));
+        return "Grāmata paņemta veiksmīgi";
+       } else{
+        return "Grāmata nav paņemta";
+       }
+
+
+
+
+    }
+
+    public LocalDate pieejamiba(){
+      return this.kontakinfo;
     }
 
     @Override
     public String toString(){
-        return this.vards.toString() + " " + this.uzvards.toString() + ", " + this.kontakinfo;
+        return this.vards.toString() + " " + this.uzvards.toString() + ", " + this.kontakinfo + ", " + this.Termiņš;
     } 
 
 
