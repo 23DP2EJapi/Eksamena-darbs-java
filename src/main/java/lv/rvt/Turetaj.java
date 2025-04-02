@@ -36,7 +36,10 @@ public class Turetaj {
         if (Klients.findperson(janis) == false) {
             System.out.println("Tādā persona netika atrasta");
             return null;
-        }
+        } else if (Gramatas.findbook(gramata) == false) {
+            System.out.println("Grāmata nav pieejama");
+            return null;
+        }else 
        if (gramata.Pieejamība().equals("Pieejama")) {
         addPerson(new Turetaj(janis.getFullName() + "," , gramata, myObj, ter));
         return "Grāmata paņemta veiksmīgi";

@@ -100,7 +100,19 @@ public class Gramatas {
         return mekletajs;
     }
 
-    public String getnosaukums(Gramatas gramata){
+    public static boolean findbook(Gramatas book)throws Exception{
+        ArrayList<Gramatas> masivs = getBookLists();
+
+        for (Gramatas value : masivs) {
+  
+            if (value.getnosaukums().equals(book.getnosaukums())) {
+                
+                return true;
+            }}
+        return false;
+    }
+
+    public String getnosaukums(){
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs;
     }
 
