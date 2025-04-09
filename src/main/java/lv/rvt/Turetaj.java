@@ -104,7 +104,7 @@ public class Turetaj {
             System.out.println("Grāmata nav pieejama");
             return null;
         }else 
-        if (gramata.Pieejamība().equals("Nepieejama")) {
+        if (gramata.Pieejamība() != "Nepieejama") {
             deletePerson(new Turetaj(janis.getFullName() + "," , gramata, myObj, ter));
             Gramatas.deleteBook(gramata);
             gramata.pieejamiba = "Pieejama";

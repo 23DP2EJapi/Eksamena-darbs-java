@@ -50,7 +50,8 @@ public class Main
         //System.out.println(ab);
         //Turetaj.addPerson(ab);
        // Turetaj.deletePerson(ab);
-       Turetaj.takeBook(b, persona, asd);
+       Turetaj.takeBook(a, persona2, asd);
+       //Turetaj.returnBook(b, persona, asd);
        //System.out.println(Gramatas.pieejamiba());
         //Turetaj.takeBook(a, persona2, asd);
 
