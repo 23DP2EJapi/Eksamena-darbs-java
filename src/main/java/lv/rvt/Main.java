@@ -16,7 +16,7 @@ public class Main
         Klients persona2 = new Klients("Zzsdhn", "Liesd", "ZaneLiepa@gmail.com");
         //Klients.deletePerson(persona);
         Gramatas a = new Gramatas("Bubieris", "Jony Asdea", 1999, "ABC", "Pieejama"); 
-        //Gramatas b = new Gramatas("ABC", "Jony Asdea", 1229, "ABC");
+        Gramatas b = new Gramatas("ABC", "Bony Asdea", 1229, "ABC", "Pieejama");
         //Gramatas.addBook(a);
         //Gramatas.deleteBook(a);
         //Gramatas.editbook(a, b);
@@ -40,12 +40,22 @@ public class Main
 
         //Zurnali.shortByName();
         //Zurnali.shortByIzdosana();
-        
-        
-        //Turetaj ab = new Turetaj(persona, new Gramatas("Bubieris", "Jony Asdea", 1999, "ABC"),  myObj);
-        
-        //Turetaj.addPerson(ab);
+        //Klients.addPerson(persona);
+
+        LocalDate myObj = LocalDate.now();
+        int asd = 14;
+        //System.out.println(a.Pieejamība());
+
+        Turetaj ab = new Turetaj(persona.getFullName()+",", new Gramatas("Ābols", "Aony Asdea", 1999, "ABC", "Pieejama"),  myObj, asd);
         //System.out.println(ab);
+        //Turetaj.addPerson(ab);
+       // Turetaj.deletePerson(ab);
+       Turetaj.takeBook(b, persona, asd);
+       //System.out.println(Gramatas.pieejamiba());
+        //Turetaj.takeBook(a, persona2, asd);
+
+        //Turetaj.deletePerson(ab);
+        //System.out.println(Turetaj.getLists());
 
 
 

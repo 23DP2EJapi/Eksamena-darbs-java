@@ -128,6 +128,19 @@ public class Gramatas {
         return this.pieejamiba;
     }
 
+    public static ArrayList<Gramatas> pieejamiba() throws Exception{
+        ArrayList<Gramatas> masivs = getBookLists();
+        ArrayList<Gramatas> mekletajs = new ArrayList<Gramatas>();
+
+        for (Gramatas value : masivs) {
+  
+            if (value.Pieejamība().equals("Pieejama")) {
+                
+                mekletajs.add(value);
+            }}
+        return mekletajs;
+    }
+
     @Override
     public String toString(){
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs + ", " + this.pieejamiba;
