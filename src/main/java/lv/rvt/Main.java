@@ -11,23 +11,10 @@ public class Main
     public static void main( String[] args ) throws Exception
     {
 
-                // Izveidojam klientu
-                Klients klients = new Klients("Zane", "Liepa", "20212020");
-        
-                // Grāmata, kas ir bijusi aizņemta
-                Gramatas gramata = new Gramatas("ABC", "Bony Asdea", 1229, "ABC", "Nepieejama");
-        
-                // Termiņš dienās (piemēram, 14 dienas)
-                int termins = 14;
-        
-                // Atgriežam grāmatu
-                String rezultats = Turetaj.returnBook(gramata, klients, termins);
-        
-                // Izvada rezultātu konsolē
-                System.out.println("Rezultāts: " + rezultats);
-            
-        
-    
+        Gramatas gramata = new Gramatas("Grāmata1", "Autors1", 2023, "Fiction", "Pieejama");
+        Klients klients = new Klients("Jānis", "Bērziņš", "12345678901");            
+        Gramatas.addBook(gramata);
+        Klients.addPerson(klients);
     
     
     }

@@ -11,10 +11,10 @@ import java.util.Comparator;
 import lv.rvt.tools.Helper;
 
 public class Turetaj {
-    private String vards;
-    private Gramatas gramata;
-    private LocalDate datums;
-    private int termins;
+    protected String vards;
+    protected Gramatas gramata;
+    protected LocalDate datums;
+    protected int termins;
 
     public Turetaj(String vards, Gramatas gramata, LocalDate datums, int termins) {
         this.vards = vards;
