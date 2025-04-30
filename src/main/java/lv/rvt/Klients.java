@@ -125,7 +125,7 @@ public class Klients {
 
     public static Boolean findperson(Klients janis)throws Exception{
         ArrayList<Klients> masivs = getPersonsLists();
-        ArrayList<Klients> mekletajs = new ArrayList<Klients>();
+        
 
         for (Klients value : masivs) {
   

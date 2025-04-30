@@ -14,3 +14,8 @@
 - "Return" izņem ierakstu par paņemto grāmatu 
 - "Search" atrod personu
 - "SearchBook" atrod grāmatu 
+
+## Programmas pārskats
+Kad programa ir palaista tā izvada operācijas, ko tā var veik lietotājs izvēlas operācija numuru un programma sāk veikt operāciju
+
+## Funkciju apraksts
