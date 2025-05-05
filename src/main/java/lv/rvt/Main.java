@@ -155,6 +155,34 @@ public class Main {
         }
         else if (choice.equals("0")){
             break;
+        }else if (choice.equals("8")){
+            System.out.print("Ievadi nosaukumu: ");
+        String nosaukums = scanner.nextLine();
+        System.out.print("Ievadi autoru: ");
+        String autors = scanner.nextLine();
+        System.out.print("Ievadi izdošanas gadu: ");
+        int izdosana = Integer.parseInt(scanner.nextLine());
+        System.out.print("Ievadi izdevēju: ");
+        String izdevejs = scanner.nextLine();
+        String pieejamiba = "Pieejama";
+
+        Gramatas gramata = new Gramatas(nosaukums, autors, izdosana, izdevejs, pieejamiba);
+        Gramatas gramata1 = new Gramatas(nosaukums, autors, izdosana, izdevejs, "Nepieejama");
+        Gramatas.deleteBook(gramata);
+        Gramatas.deleteBook(gramata1);
+        System.out.println("Grāmata dzēsta");
+        Thread.sleep(5000);
+        }else if (choice.equals("9")){
+            System.out.print("Ievadi vārdu: ");
+                String vards = scanner.nextLine();
+                System.out.print("Ievadi uzvārdu: ");
+                String uzvards = scanner.nextLine();
+                System.out.print("Ievadi kontaktinformāciju: ");
+                String kontakts = scanner.nextLine();
+        
+                Klients klients = new Klients(vards, uzvards, kontakts);
+                Klients.deletePerson(klients);
+                
         }
     }
 

@@ -86,22 +86,19 @@ public class Klients {
     }
 
     public static void deletePerson(Klients persona) throws Exception {
-        ArrayList<Klients> Glabātuve = getPersonsLists();
-        ArrayList<Klients> helper = new ArrayList<>();
-    
-        for (Klients klients : Glabātuve) {
-            if (!klients.getname().equals(persona.getname())) {
-                helper.add(klients);
+        ArrayList<Klients> klienti = getPersonsLists();
+        klienti.remove(persona); 
+        
+        try (BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.TRUNCATE_EXISTING)) {
+            for (Klients klients : klienti) {
+                writer.write(klients.toString());
+                writer.newLine();
             }
         }
     
-        BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.TRUNCATE_EXISTING);
-        for (Klients klients : helper) {
-            writer.write(klients.toString());
-            writer.newLine();
-        }
-        writer.close();
+        System.out.println("Klients dzēsts!");
     }
+    
     
 
     public static void editPerson(Klients persona, Klients jaunainformacija) throws  Exception{
@@ -134,5 +131,22 @@ public class Klients {
             }}
         return false;
     }
+
+    @Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Klients klients = (Klients) o;
+
+    return vards.equals(klients.vards) &&
+           uzvards.equals(klients.uzvards) &&
+           kontakinfo.equals(klients.kontakinfo);
+}
+
+@Override
+public int hashCode() {
+    return java.util.Objects.hash(vards, uzvards, kontakinfo);
+}
 
 }
