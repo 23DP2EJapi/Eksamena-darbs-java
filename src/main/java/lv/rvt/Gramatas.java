@@ -146,32 +146,42 @@ public class Gramatas {
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs + ", " + this.pieejamiba;
     }
 
-    public static void deleteBook(Gramatas persona) throws  Exception{
-        ArrayList<Gramatas> Glabātuve = getBookLists();
-        ArrayList<Gramatas> helper = new ArrayList<>();
-
-        BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.TRUNCATE_EXISTING);
-       
-        for (Gramatas klients : Glabātuve) {
-            if (klients.getname().equals(persona.getname())) {
-                
-            }else{
-                helper.add(klients);
+    public static void deleteBook(Gramatas gramata) throws Exception {
+        ArrayList<Gramatas> gramatuSaraksts = getBookLists();
+        gramatuSaraksts.remove(gramata); // izmantos equals()
+    
+        try (BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.TRUNCATE_EXISTING)) {
+            for (Gramatas g : gramatuSaraksts) {
+                writer.write(g.toString());
+                writer.newLine();
             }
-
         }
-        
-        
-        int b = helper.size();
-        for(int a = 0; a<=b - 1;a++ ){
-            Gramatas.addBook(helper.get(a));
-        }
-     
-        
+    
+        System.out.println("Grāmata dzēsta!");
     }
 
     public static void editbook(Gramatas persona, Gramatas jaunainformacija) throws  Exception{
         addBook(jaunainformacija);
         deleteBook(persona);
     }
+
+    @Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Gramatas gramata = (Gramatas) o;
+
+    return idosana == gramata.idosana &&
+           nosaukums.equals(gramata.nosaukums) &&
+           autors.equals(gramata.autors) &&
+           izdevejs.equals(gramata.izdevejs) &&
+           pieejamiba.equals(gramata.pieejamiba);
+}
+
+@Override
+public int hashCode() {
+    return java.util.Objects.hash(nosaukums, autors, idosana, izdevejs, pieejamiba);
+}
+
 }
