@@ -177,8 +177,8 @@ public class Gramatas {
     
 
     public static void editbook(Gramatas persona, Gramatas jaunainformacija) throws  Exception{
-        addBook(jaunainformacija);
         deleteBook(persona);
+        addBook(jaunainformacija);
     }
 
     @Override

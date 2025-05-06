@@ -3,13 +3,25 @@ package lv.rvt;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedWriter;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import lv.rvt.tools.Helper;
 
 import static org.junit.Assert.assertEquals;
 
 public class GramatasTest {
+
+    @Before
+public void clearFile() throws Exception {
+    BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.TRUNCATE_EXISTING);
+    writer.write("");
+    writer.close();
+}
 
     @Test
     public void testFindBookByTitle() throws Exception {
@@ -26,23 +38,43 @@ public class GramatasTest {
         assertEquals(0, Gramatas.findbookbynosaukums("Neeksistē").size());
     }
 
-    @Test
-    public void testFindBookByAuthor() throws Exception {
-        assertEquals(1, Gramatas.findbookbyautors("Autors A").size());
-        assertEquals(1, Gramatas.findbookbyautors("Autors C").size());
-        assertEquals(0, Gramatas.findbookbyautors("Nezināms Autors").size());
-    }
+@Test
+public void testFindBookByAuthor() throws Exception {
+    
+    Helper.getWriter("Gramatas.csv", java.nio.file.StandardOpenOption.TRUNCATE_EXISTING).close();
 
-    @Test
-    public void testFindBook() throws Exception {
-        Gramatas book1 = new Gramatas("Grāmata A", "Autors A", 2001, "Izdevējs A", "Pieejama");
-        Gramatas book2 = new Gramatas("Grāmata C", "Autors C", 2003, "Izdevējs C", "Pieejama");
-        Gramatas book3 = new Gramatas("Nav Grāmata", "Neviens", 1999, "???", "Pieejama");
+   
+    Gramatas.addBook(new Gramatas("Grāmata 1", "Autors A", 2001, "Izdevējs 1", "Pieejama"));
+    Gramatas.addBook(new Gramatas("Grāmata 2", "Autors B", 2002, "Izdevējs 2", "Pieejama"));
+    Gramatas.addBook(new Gramatas("Grāmata 3", "Autors C", 2003, "Izdevējs 3", "Nepieejama"));
 
-        assertTrue(Gramatas.findbook(book1));
-        assertTrue(Gramatas.findbook(book2));
-        assertFalse(Gramatas.findbook(book3));
-    }
+    
+    assertEquals(1, Gramatas.findbookbyautors("Autors A").size());
+    assertEquals(1, Gramatas.findbookbyautors("Autors C").size());
+    assertEquals(0, Gramatas.findbookbyautors("Nezināms Autors").size());
+}
+
+
+@Test
+public void testFindBook() throws Exception {
+    
+    BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.TRUNCATE_EXISTING);
+    writer.write("");
+    writer.close();
+
+    
+    Gramatas book1 = new Gramatas("Grāmata A", "Autors A", 2001, "Izdevējs A", "Pieejama");
+    Gramatas book2 = new Gramatas("Grāmata C", "Autors C", 2003, "Izdevējs C", "Pieejama");
+    Gramatas book3 = new Gramatas("Nav Grāmata", "Neviens", 1999, "???", "Pieejama");
+
+    Gramatas.addBook(book1);
+    Gramatas.addBook(book2);
+
+    
+    assertTrue(Gramatas.findbook(book1));
+    assertTrue(Gramatas.findbook(book2));
+    assertFalse(Gramatas.findbook(book3)); 
+}
 
     @Test
     public void testAddBookAndDeleteBook() throws Exception {
@@ -59,10 +91,10 @@ public class GramatasTest {
     public void testEditBook() throws Exception {
         Gramatas original = new Gramatas("Rediģētā", "Autors", 2018, "Old Pub", "Pieejama");
         Gramatas.addBook(original);
-
+    
         Gramatas jauna = new Gramatas("Rediģētā", "Autors", 2018, "Old Pub", "Nepieejama");
-        Gramatas.editbook(original, jauna);
-
+        Gramatas.editbook(original, jauna); 
+    
         ArrayList<Gramatas> results = Gramatas.findbookbynosaukums("Rediģētā");
         assertEquals(1, results.size());
         assertEquals("Nepieejama", results.get(0).Pieejamība());
