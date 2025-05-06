@@ -53,26 +53,36 @@ public class Gramatas {
 
     }
 
-    public static ArrayList<Gramatas> getBookLists() throws  Exception
-    {
-        BufferedReader reader = Helper.getReader("Gramatas.csv");
-        ArrayList<Gramatas> books = new ArrayList<>();
-        String line;
-       
-        
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(", ");
-
-            Gramatas book = new Gramatas(
-                parts[0], parts[1], Integer.valueOf(parts[2]), parts[3], parts[4]);
-                books.add(book);
-                
+    public static ArrayList<Gramatas> getBookLists() throws Exception {
+        try (BufferedReader reader = Helper.getReader("Gramatas.csv")) {
+            ArrayList<Gramatas> books = new ArrayList<>();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Sadalām tikai 5 daļās, ne vairāk, ne mazāk
+                String[] parts = line.split(", ", 5);
+                if (parts.length < 5) {
+                    System.err.println("IGNORED malformed line: " + line);
+                    continue;
+                }
+    
+                String title      = parts[0];
+                String author     = parts[1];
+                int year;
+                try {
+                    year = Integer.parseInt(parts[2]);
+                } catch (NumberFormatException nfe) {
+                    System.err.println("INVALID year in line: " + line);
+                    continue;
+                }
+                String publisher  = parts[3];
+                String availability = parts[4];
+    
+                books.add(new Gramatas(title, author, year, publisher, availability));
+            }
+            return books;
         }
-
-        return books;
-
-            
     }
+    
 
     public static ArrayList<Gramatas> findbookbynosaukums(String vards)throws Exception{
         ArrayList<Gramatas> masivs = getBookLists();
@@ -146,19 +156,25 @@ public class Gramatas {
         return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs + ", " + this.pieejamiba;
     }
 
-    public static void deleteBook(Gramatas gramata) throws Exception {
-        ArrayList<Gramatas> gramatuSaraksts = getBookLists();
-        gramatuSaraksts.remove(gramata); // izmantos equals()
+    public static boolean deleteBook(Gramatas gramata) throws Exception {
+        ArrayList<Gramatas> saraksts = getBookLists();
+        boolean removed = saraksts.remove(gramata);  // uses equals()
     
         try (BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.TRUNCATE_EXISTING)) {
-            for (Gramatas g : gramatuSaraksts) {
+            for (Gramatas g : saraksts) {
                 writer.write(g.toString());
                 writer.newLine();
             }
         }
     
-        System.out.println("Grāmata dzēsta!");
+        if (removed) {
+            System.out.println("Grāmata dzēsta!");
+        } else {
+            System.err.println("Grāmata netika atrasta: " + gramata);
+        }
+        return removed;
     }
+    
 
     public static void editbook(Gramatas persona, Gramatas jaunainformacija) throws  Exception{
         addBook(jaunainformacija);

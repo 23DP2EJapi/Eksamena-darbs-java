@@ -1,7 +1,7 @@
 package lv.rvt;
 
 import java.util.*;
-import java.time.LocalDate;
+
 
 public class Main {
     public static void main(String[] args) throws Exception{
@@ -16,6 +16,8 @@ public class Main {
             System.out.println("5. Parādīt visus klientus");
             System.out.println("6. Klients paņem grāmatu");
             System.out.println("7. Klients atdod grāmatu");
+            System.out.println("8. Dzēsts vai rediģēt grāmatu");
+            System.out.println("9. Dzēst vai rediģet klientu");
             System.out.println("0. Iziet");
             System.out.print("Izvēlies opciju: ");
 
@@ -110,25 +112,22 @@ public class Main {
                 String vards = scanner.nextLine();
                 System.out.print("Ievadi klienta uzvārdu: ");
                 String uzvards = scanner.nextLine();
+                System.out.print("Ievadi klienta kontaktinfo: ");
+                String kontaktinfo = scanner.nextLine();
                 System.out.print("Ievadi grāmatas nosaukumu: ");
                 String nosaukums = scanner.nextLine();
+                System.out.print("Ievadi autoru: ");
+                String autors = scanner.nextLine();
+                System.out.print("Ievadi izdošanas gadu: ");
+                int izdosana = Integer.parseInt(scanner.nextLine());
+                System.out.print("Ievadi izdevēju: ");
+                String izdevejs = scanner.nextLine();
         
-                ArrayList<Klients> klienti = Klients.findperson(vards);
-                if (klienti.isEmpty()) {
-                    System.out.println("Klients nav atrasts.");
-                    return;
-                }
-        
-                ArrayList<Gramatas> gramatas = Gramatas.findbookbynosaukums(nosaukums);
-                if (gramatas.isEmpty()) {
-                    System.out.println("Grāmata nav atrasta.");
-                    return;
-                }
-        
+             
                 System.out.print("Ievadi termiņu (dienās): ");
                 int termins = Integer.parseInt(scanner.nextLine());
         
-                String result = Turetaj.takeBook(gramatas.get(0), klienti.get(0), termins);
+                String result = Turetaj.takeBook(new Gramatas(nosaukums, autors,izdosana, izdevejs, "Pieejama"), new Klients(vards, uzvards, kontaktinfo), termins);
                 System.out.println(result);
                 Thread.sleep(5000);
 
@@ -156,7 +155,12 @@ public class Main {
         else if (choice.equals("0")){
             break;
         }else if (choice.equals("8")){
-            System.out.print("Ievadi nosaukumu: ");
+            System.out.println("1. Dzēst grāmatu");
+            System.out.println("2. Rediģēt grāmatu");
+            String ievade = scanner.nextLine();
+            
+            if(ievade.equals("1")){
+        System.out.print("Ievadi nosaukumu: ");
         String nosaukums = scanner.nextLine();
         System.out.print("Ievadi autoru: ");
         String autors = scanner.nextLine();
@@ -171,9 +175,42 @@ public class Main {
         Gramatas.deleteBook(gramata);
         Gramatas.deleteBook(gramata1);
         System.out.println("Grāmata dzēsta");
+    }else if(ievade.equals("2")){
+
+
+    System.out.print("Ievadi nosaukumu: ");
+    String nosaukums = scanner.nextLine();
+    System.out.print("Ievadi autoru: ");
+    String autors = scanner.nextLine();
+    System.out.print("Ievadi izdošanas gadu: ");
+    int izdosana = Integer.parseInt(scanner.nextLine());
+    System.out.print("Ievadi izdevēju: ");
+    String izdevejs = scanner.nextLine();
+    String pieejamiba = "Pieejama";
+
+    Gramatas gramata = new Gramatas(nosaukums, autors, izdosana, izdevejs, pieejamiba);
+    
+    System.out.print("Ievadi nosaukumu: ");
+    nosaukums = scanner.nextLine();
+    System.out.print("Ievadi autoru: ");
+    autors = scanner.nextLine();
+    System.out.print("Ievadi izdošanas gadu: ");
+    izdosana = Integer.parseInt(scanner.nextLine());
+    System.out.print("Ievadi izdevēju: ");
+    izdevejs = scanner.nextLine();
+    Gramatas gramata1 = new Gramatas(nosaukums, autors, izdosana, izdevejs, pieejamiba);
+    Gramatas.editbook(gramata, gramata1);
+    System.out.println("Grāmata mainīta");
+    }
         Thread.sleep(5000);
         }else if (choice.equals("9")){
             System.out.print("Ievadi vārdu: ");
+            System.out.println("1. Dzēst personu");
+            System.out.println("2. Rediģēt personu");
+            System.out.print("Ievadie izvēli:");
+            String ievade = scanner.nextLine();
+            if (ievade.equals(1)){
+                System.out.print("Ievadi vārdu: ");
                 String vards = scanner.nextLine();
                 System.out.print("Ievadi uzvārdu: ");
                 String uzvards = scanner.nextLine();
@@ -182,6 +219,27 @@ public class Main {
         
                 Klients klients = new Klients(vards, uzvards, kontakts);
                 Klients.deletePerson(klients);
+            }else if(ievade.equals(2)){
+                System.out.print("Ievadi vārdu: ");
+                String vards = scanner.nextLine();
+                System.out.print("Ievadi uzvārdu: ");
+                String uzvards = scanner.nextLine();
+                System.out.print("Ievadi kontaktinformāciju: ");
+                String kontakts = scanner.nextLine();
+        
+                Klients klients = new Klients(vards, uzvards, kontakts);
+                
+
+                System.out.print("Ievadi jauno vārdu: ");
+                vards = scanner.nextLine();
+                System.out.print("Ievadi jauno uzvārdu: ");
+                uzvards = scanner.nextLine();
+                System.out.print("Ievadi jauno kontaktinformāciju: ");
+                kontakts = scanner.nextLine();
+        
+                Klients klients2 = new Klients(vards, uzvards, kontakts);
+                Klients.editPerson(klients, klients2);
+            }
                 
         }
     }
