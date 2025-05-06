@@ -21,6 +21,10 @@ public class Klients {
         this.kontakinfo = info;
     }
 
+    public String getKontakinfo() {
+        return kontakinfo;
+    }
+
     public static void addPerson(Klients vards) throws Exception{
         BufferedWriter writer = Helper.getWriter("Klienti.csv", StandardOpenOption.APPEND);
         writer.write(vards.toString());
@@ -65,25 +69,18 @@ public class Klients {
             
     }
 
-    public static void shortByFirstName() throws Exception{
-
-        ArrayList<Klients> personlist = Klients.getPersonsLists();
+    public static ArrayList<Klients> shortByFirstNameList() throws Exception {
+        ArrayList<Klients> personlist = getPersonsLists();
         personlist.sort(Comparator.comparing(Klients::getFullName));
-
-        for(Klients person : personlist){
-            System.out.println(person);
-        }
+        return personlist;
     }
-
-    public static void shortByLastName() throws Exception{
-
-        ArrayList<Klients> personlist = Klients.getPersonsLists();
+    
+    public static ArrayList<Klients> shortByLastNameList() throws Exception {
+        ArrayList<Klients> personlist = getPersonsLists();
         personlist.sort(Comparator.comparing(Klients::getFullLastName));
-
-        for(Klients person : personlist){
-            System.out.println(person);
-        }
+        return personlist;
     }
+    
 
     public static void deletePerson(Klients persona) throws Exception {
         ArrayList<Klients> klienti = getPersonsLists();
