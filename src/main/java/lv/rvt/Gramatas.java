@@ -191,8 +191,7 @@ public boolean equals(Object o) {
     return idosana == gramata.idosana &&
            nosaukums.equals(gramata.nosaukums) &&
            autors.equals(gramata.autors) &&
-           izdevejs.equals(gramata.izdevejs) &&
-           pieejamiba.equals(gramata.pieejamiba);
+           izdevejs.equals(gramata.izdevejs) ;
 }
 
 @Override

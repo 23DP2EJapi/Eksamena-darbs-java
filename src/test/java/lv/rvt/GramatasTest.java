@@ -1,130 +1,86 @@
 package lv.rvt;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
 import java.util.ArrayList;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class GramatasTest {
 
-    private Gramatas gramata1;
-    private Gramatas gramata2;
-
-    @Before
-    public void setUp() throws Exception {
-        // Izveidojam dažas testēšanai nepieciešamās grāmatas
-        gramata1 = new Gramatas("Grāmata1", "Autors1", 2020, "Izdevējs1", "Pieejama");
-        gramata2 = new Gramatas("Grāmata2", "Autors2", 2021, "Izdevējs2", "Pieejama");
-    }
-
     @Test
-    public void testAddBook() throws Exception {
-        // Pievienojam grāmatu
-        Gramatas.addBook(gramata1);
-        
-        // Pārbaudām, vai grāmata ir pievienota
-        ArrayList<Gramatas> books = Gramatas.getBookLists();
-        assertTrue(books.contains(gramata1));
-    }
+    public void testFindBookByTitle() throws Exception {
+        Gramatas book1 = new Gramatas("Grāmata A", "Autors A", 2001, "Izdevējs A", "Pieejama");
+        Gramatas book2 = new Gramatas("Grāmata B", "Autors B", 2002, "Izdevējs B", "Nepieejama");
+        Gramatas book3 = new Gramatas("Grāmata C", "Autors C", 2003, "Izdevējs C", "Pieejama");
 
-    @Test
-    public void testFindBookByName() throws Exception {
-        // Pievienojam grāmatu
-        Gramatas.addBook(gramata1);
-        
-        // Meklējam grāmatu pēc nosaukuma
-        ArrayList<Gramatas> foundBooks = Gramatas.findbookbynosaukums("Grāmata1");
-        
-        // Pārbaudām, vai grāmata ir atrasta
-        
-        assertEquals(gramata1, foundBooks.get(0));
+        Gramatas.addBook(book1);
+        Gramatas.addBook(book2);
+        Gramatas.addBook(book3);
+
+        assertEquals(1, Gramatas.findbookbynosaukums("Grāmata A").size());
+        assertEquals(1, Gramatas.findbookbynosaukums("Grāmata B").size());
+        assertEquals(0, Gramatas.findbookbynosaukums("Neeksistē").size());
     }
 
     @Test
     public void testFindBookByAuthor() throws Exception {
-        // Pievienojam grāmatu
-        Gramatas.addBook(gramata1);
-        
-        // Meklējam grāmatu pēc autora
-        ArrayList<Gramatas> foundBooks = Gramatas.findbookbyautors("Autors1");
-        
-        // Pārbaudām, vai grāmata ir atrasta
-        assertEquals(1, foundBooks.size());
-        assertEquals(gramata1, foundBooks.get(0));
+        assertEquals(1, Gramatas.findbookbyautors("Autors A").size());
+        assertEquals(1, Gramatas.findbookbyautors("Autors C").size());
+        assertEquals(0, Gramatas.findbookbyautors("Nezināms Autors").size());
     }
 
     @Test
-    public void testFindBookNotFound() throws Exception {
-        // Pārbaudām, vai meklēšana ar neesošu grāmatu atgriež tukšu sarakstu
-        ArrayList<Gramatas> foundBooks = Gramatas.findbookbynosaukums("GrāmataNepastāv");
-        assertTrue(foundBooks.isEmpty());
+    public void testFindBook() throws Exception {
+        Gramatas book1 = new Gramatas("Grāmata A", "Autors A", 2001, "Izdevējs A", "Pieejama");
+        Gramatas book2 = new Gramatas("Grāmata C", "Autors C", 2003, "Izdevējs C", "Pieejama");
+        Gramatas book3 = new Gramatas("Nav Grāmata", "Neviens", 1999, "???", "Pieejama");
+
+        assertTrue(Gramatas.findbook(book1));
+        assertTrue(Gramatas.findbook(book2));
+        assertFalse(Gramatas.findbook(book3));
     }
 
     @Test
-    public void testDeleteBook() throws Exception {
-        // Pievienojam grāmatu
-        Gramatas.addBook(gramata1);
-        
-        // Pārbaudām, vai grāmata ir pievienota
-        ArrayList<Gramatas> booksBeforeDelete = Gramatas.getBookLists();
-        assertTrue(booksBeforeDelete.contains(gramata1));
-        
-        // Dzēšam grāmatu
-        Gramatas.deleteBook(gramata1);
-        
-        // Pārbaudām, vai grāmata tika dzēsta
-        ArrayList<Gramatas> booksAfterDelete = Gramatas.getBookLists();
-        assertFalse(booksAfterDelete.contains(gramata1));
+    public void testAddBookAndDeleteBook() throws Exception {
+        Gramatas book = new Gramatas("Test Grāmata", "Tests", 2020, "Testētājs", "Pieejama");
+
+        Gramatas.addBook(book);
+        assertTrue(Gramatas.findbook(book));
+
+        assertTrue(Gramatas.deleteBook(book));
+        assertFalse(Gramatas.findbook(book));
     }
 
     @Test
     public void testEditBook() throws Exception {
-        // Pievienojam grāmatu
-        Gramatas.addBook(gramata1);
-        
-        // Sagatavojam jaunu grāmatu ar atjauninātu informāciju
-        Gramatas updatedBook = new Gramatas("Grāmata1", "Autors1", 2020, "Izdevējs1", "Nepieejama");
-        
-        // Rediģējam grāmatu
-        Gramatas.editbook(gramata1, updatedBook);
-        
-        // Pārbaudām, vai grāmata ir rediģēta
-        ArrayList<Gramatas> books = Gramatas.getBookLists();
-        assertTrue(books.contains(updatedBook));
-        assertFalse(books.contains(gramata1));
+        Gramatas original = new Gramatas("Rediģētā", "Autors", 2018, "Old Pub", "Pieejama");
+        Gramatas.addBook(original);
+
+        Gramatas jauna = new Gramatas("Rediģētā", "Autors", 2018, "Old Pub", "Nepieejama");
+        Gramatas.editbook(original, jauna);
+
+        ArrayList<Gramatas> results = Gramatas.findbookbynosaukums("Rediģētā");
+        assertEquals(1, results.size());
+        assertEquals("Nepieejama", results.get(0).Pieejamība());
     }
 
     @Test
-    public void testShortByName() throws Exception {
-        // Pievienojam vairākas grāmatas
-        Gramatas.addBook(gramata1);
-        Gramatas.addBook(gramata2);
-        
-        // Pārbaudām, vai grāmatas tiek kārtotas pēc nosaukuma
-        Gramatas.shortByName();  // Pārbaudīsim ar manuālu skatīšanos, vai rezultāts ir kārtots pēc nosaukuma
-    }
+    public void testPieejamiba() throws Exception {
+        Gramatas book1 = new Gramatas("P1", "A1", 2000, "Iz1", "Pieejama");
+        Gramatas book2 = new Gramatas("P2", "A2", 2000, "Iz2", "Nepieejama");
+        Gramatas book3 = new Gramatas("P3", "A3", 2000, "Iz3", "Pieejama");
 
-    @Test
-    public void testShortByAuthor() throws Exception {
-        // Pievienojam vairākas grāmatas
-        Gramatas.addBook(gramata1);
-        Gramatas.addBook(gramata2);
-        
-        // Pārbaudām, vai grāmatas tiek kārtotas pēc autora
-        Gramatas.shortByAuthor();  // Pārbaudīsim ar manuālu skatīšanos, vai rezultāts ir kārtots pēc autora
-    }
+        Gramatas.addBook(book1);
+        Gramatas.addBook(book2);
+        Gramatas.addBook(book3);
 
-    @Test
-    public void testAvailableBooks() throws Exception {
-        // Pievienojam pieejamu un nepieejamu grāmatu
-        Gramatas gramata3 = new Gramatas("Grāmata3", "Autors3", 2022, "Izdevējs3", "Nepieejama");
-        Gramatas.addBook(gramata1);
-        Gramatas.addBook(gramata3);
-        
-        // Pārbaudām, vai tiek atgriezts tikai pieejamās grāmatas
-        ArrayList<Gramatas> availableBooks = Gramatas.pieejamiba();
-        assertTrue(availableBooks.contains(gramata1));
-        assertFalse(availableBooks.contains(gramata3));
+        ArrayList<Gramatas> list = Gramatas.pieejamiba();
+        assertTrue(list.stream().anyMatch(g -> g.getname().equals("P1")));
+        assertTrue(list.stream().anyMatch(g -> g.getname().equals("P3")));
+        assertFalse(list.stream().anyMatch(g -> g.getname().equals("P2")));
     }
 }

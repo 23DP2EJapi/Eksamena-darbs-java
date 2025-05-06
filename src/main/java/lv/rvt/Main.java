@@ -7,7 +7,15 @@ public class Main {
     public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        Gramatas book1 = new Gramatas("Grāmata A", "Autors A", 2001, "Izdevējs A", "Pieejama");
+        Gramatas book2 = new Gramatas("Grāmata B", "Autors B", 2002, "Izdevējs B", "Nepieejama");
+        Gramatas book3 = new Gramatas("Grāmata C", "Autors C", 2003, "Izdevējs C", "Pieejama");
+
+        Gramatas.addBook(book1);
+        Gramatas.addBook(book2);
+        Gramatas.addBook(book3);
+
+       /*  while (true) {
             System.out.println("\n===== Bibliotēkas Sistēma =====");
             System.out.println("1. Pievienot jaunu grāmatu");
             System.out.println("2. Parādīt visas grāmatas");
@@ -242,7 +250,7 @@ public class Main {
             }
                 
         }
-    }
+    }*/
 
     
 }
