@@ -151,10 +151,11 @@ public class Gramatas {
         return mekletajs;
     }
 
+
     @Override
-    public String toString(){
-        return this.nosaukums + ", " + this.autors + ", " + this.idosana + ", " + this.izdevejs + ", " + this.pieejamiba;
-    }
+public String toString() {
+    return nosaukums + ", " + autors + ", " + idosana + ", " + izdevejs + ", " + pieejamiba;
+}
 
     public static boolean deleteBook(Gramatas gramata) throws Exception {
         ArrayList<Gramatas> saraksts = getBookLists();

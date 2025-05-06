@@ -130,4 +130,5 @@ public class Turetaj {
     public String toString() {
         return this.vards + ", " + this.gramata.toString() + ", " + this.datums + ", " + this.termins;
     }
+    
 }
