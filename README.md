@@ -13,9 +13,6 @@ Rediģēt un dzēst esošo informāciju.
 🖥️ Lietotāja interfeiss
 Programma darbojas konsoles (termināla) režīmā. Galvenajā izvēlnē tiek piedāvātas šādas iespējas:
 
-markdown
-Copy
-Edit
 ===== Bibliotēkas Sistēma =====
 1. Pievienot jaunu grāmatu
 2. Parādīt visas grāmatas

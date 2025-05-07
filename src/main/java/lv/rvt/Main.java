@@ -37,6 +37,8 @@ public class Main {
                 Gramatas gramata = new Gramatas(nosaukums, autors, izdosana, izdevejs, pieejamiba);
                 Gramatas.addBook(gramata);
                 System.out.println(ConsoleColors.GREEN + "Grāmata pievienota!" + ConsoleColors.RESET);
+                Thread.sleep(4000);
+                clearConsole();
 
             } else if (choice.equals("2")) {
                 System.out.println(ConsoleColors.CYAN + "1 Nekārtot" + ConsoleColors.RESET);
@@ -68,6 +70,8 @@ public class Main {
                 } else if (izvele.equals("3")) {
                     Gramatas.shortByAuthor();
                 }
+                Thread.sleep(4000);
+                clearConsole();
 
             } else if (choice.equals("3")) {
 
@@ -96,6 +100,8 @@ public class Main {
                     String izdevejs = scanner.nextLine();
                     Gramatas.findbook(new Gramatas(nosaukums, autors, izlaišana, izdevejs, izdevejs));
                 }
+                Thread.sleep(4000);
+                clearConsole();
 
             } else if (choice.equals("4")) {
                 System.out.print(ConsoleColors.GREEN + "Ievadi vārdu: " + ConsoleColors.RESET);
@@ -108,6 +114,8 @@ public class Main {
                 Klients klients = new Klients(vards, uzvards, kontakts);
                 Klients.addPerson(klients);
                 System.out.println(ConsoleColors.GREEN + "Klients pievienots!" + ConsoleColors.RESET);
+                Thread.sleep(4000);
+                clearConsole();
 
             } else if (choice.equals("5")) {
                 ArrayList<Klients> klienti = Klients.getPersonsLists();
@@ -126,7 +134,25 @@ public class Main {
                 }
 
                 System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+                Thread.sleep(4000);
+                clearConsole();
             } else if (choice.equals("6")) {
+                ArrayList<Klients> klienti = Klients.getPersonsLists();
+
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+                System.out.printf("| Vārds                | Uzvārds              | Kontaktinformācija          |\n");
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+
+                for (Klients k : klienti) {
+                    System.out.printf("| %-20s | %-20s | %-27s |\n",
+                            k.getname(),
+                            k.getLastnamme(),
+                            k.getKontakinfo()
+                    );
+                }
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+                Gramatas.shortByName();
+
                 System.out.print(ConsoleColors.GREEN + "Ievadi klienta vārdu: " + ConsoleColors.RESET);
                 String vards = scanner.nextLine();
                 System.out.print(ConsoleColors.GREEN + "Ievadi klienta uzvārdu: " + ConsoleColors.RESET);
@@ -147,8 +173,26 @@ public class Main {
 
                 String result = Turetaj.takeBook(new Gramatas(nosaukums, autors, izdosana, izdevejs, "Pieejama"), new Klients(vards, uzvards, kontaktinfo), termins);
                 System.out.println(result);
+                Thread.sleep(4000);
+                clearConsole();
 
             } else if (choice.equals("7")) {
+                ArrayList<Klients> klienti = Klients.getPersonsLists();
+
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+                System.out.printf("| Vārds                | Uzvārds              | Kontaktinformācija          |\n");
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+
+                for (Klients k : klienti) {
+                    System.out.printf("| %-20s | %-20s | %-27s |\n",
+                            k.getname(),
+                            k.getLastnamme(),
+                            k.getKontakinfo()
+                    );
+                }
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+                System.out.println(Turetaj.getLists());
+
                 System.out.print(ConsoleColors.GREEN + "Ievadi klienta vārdu: " + ConsoleColors.RESET);
                 String vards = scanner.nextLine();
                 System.out.print(ConsoleColors.GREEN + "Ievadi klienta uzvārdu: " + ConsoleColors.RESET);
@@ -164,6 +208,8 @@ public class Main {
                 System.out.print(ConsoleColors.GREEN + "Ievadi Izdevēju: " + ConsoleColors.RESET);
                 String izdevejs = scanner.nextLine();
                 System.out.println(Turetaj.returnBook(new Gramatas(vardsgr, uzvardsgr, x, izdevejs, "Pieejama"), new Klients(vards, uzvards, nosaukums), 14));
+                Thread.sleep(4000);
+                clearConsole();
 
             } else if (choice.equals("0")) {
                 break;
@@ -215,6 +261,8 @@ public class Main {
                     Gramatas.editbook(gramata, gramata1);
                     System.out.println(ConsoleColors.GREEN + "Grāmata mainīta" + ConsoleColors.RESET);
                 }
+                Thread.sleep(4000);
+                clearConsole();
 
             } else if (choice.equals("9")) {
                 System.out.println(ConsoleColors.BLUE + "1. Dzēst personu" + ConsoleColors.RESET);
@@ -250,6 +298,8 @@ public class Main {
 
                     Klients klients2 = new Klients(vards, uzvards, kontakts);
                     Klients.editPerson(klients, klients2);
+                    Thread.sleep(4000);
+                    clearConsole();
                 }
 
             } else if (choice.equals("10")) {
@@ -262,7 +312,15 @@ public class Main {
 
                 Klients klients = new Klients(vards, uzvards, kontakts);
                 Klients.findperson(klients);
+                Thread.sleep(4000);
+                clearConsole();
             }
         }
     }
+
+    public static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+    
 }
