@@ -44,6 +44,7 @@ public class Main {
                 System.out.println(ConsoleColors.CYAN + "1 Nekārtot" + ConsoleColors.RESET);
                 System.out.println(ConsoleColors.CYAN + "2 Kārtot pēc nosaukuma" + ConsoleColors.RESET);
                 System.out.println(ConsoleColors.CYAN + "3 Kārtot pēc autora" + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.CYAN + "4 Parādīt visas piejamās grāmatas" + ConsoleColors.RESET);
                 System.out.print(ConsoleColors.GREEN + "Izvēlies opciju: " + ConsoleColors.RESET);
                 String izvele = scanner.nextLine();
 
@@ -69,6 +70,26 @@ public class Main {
                     Gramatas.shortByName();
                 } else if (izvele.equals("3")) {
                     Gramatas.shortByAuthor();
+                } else if (izvele.equals("4")) {
+
+                    ArrayList<Gramatas> personlist = Gramatas.pieejamiba();
+
+                    System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+                    System.out.printf("| Nosaukums                    | Autors                   | Gads   | Izdevējs                 | Pieejamība  |\n");
+                    System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+
+                    for (Gramatas gr : personlist) {
+                        System.out.printf("| %-28s | %-24s | %-6d | %-24s | %-11s |\n",
+                                gr.getname(),
+                                gr.getautors(),
+                                gr.getidosana(),
+                                gr.getizdevejs(),
+                                gr.Pieejamība()
+                        );
+                    }
+
+                    System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+                    
                 }
                 Thread.sleep(4000);
                 clearConsole();
