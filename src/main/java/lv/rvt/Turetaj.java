@@ -71,7 +71,7 @@ public class Turetaj {
     public static String takeBook(Gramatas gramata, Klients klients, int termins) throws Exception {
         LocalDate today = LocalDate.now();
 
-        if (!Klients.findperson(klients)) {
+        if (!Klients.findpersonbBoolea(klients)) {
             return "Klients netika atrasts.";
         }
         if (!Gramatas.findbook(gramata)) {
@@ -97,7 +97,7 @@ public class Turetaj {
     public static String returnBook(Gramatas gramata, Klients klients, int termins) throws Exception {
         LocalDate today = LocalDate.now();
 
-        if (!Klients.findperson(klients)) {
+        if (!Klients.findpersonbBoolea(klients)) {
             return "Klients netika atrasts.";
         }
 

@@ -103,6 +103,10 @@ public class Klients {
         addPerson(jaunainformacija);
     }
 
+    public String getLastnamme(){
+        return this.uzvards;
+    }
+
     public String getFullName(){
         return this.vards + " " + this.uzvards;
     }
@@ -117,7 +121,33 @@ public class Klients {
     }
 
 
-    public static Boolean findperson(Klients janis)throws Exception{
+    public static void findperson(Klients janis)throws Exception{
+        ArrayList<Klients> masivs = getPersonsLists();
+        ArrayList<Klients> klienti = new ArrayList<>();
+
+        for (Klients value : masivs) {
+  
+            if (value.getFullName().equals(janis.getFullName())) {
+                klienti.add(value);
+            }}
+        
+
+        System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+        System.out.printf("| Vārds                | Uzvārds              | Kontaktinformācija          |\n");
+        System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+    
+        for (Klients k : klienti) {
+            System.out.printf("| %-20s | %-20s | %-27s |\n",
+                    k.getname(),
+                    k.getLastnamme(),
+                    k.getKontakinfo()
+            );
+        }
+    
+        System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+    }
+
+    public static Boolean findpersonbBoolea (Klients janis)throws Exception{
         ArrayList<Klients> masivs = getPersonsLists();
         
 
@@ -129,16 +159,14 @@ public class Klients {
         return false;
     }
 
-    @Override
-public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+        @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    Klients klients = (Klients) o;
+        Klients klients = (Klients) o;
 
-    return vards.equals(klients.vards) &&
-           uzvards.equals(klients.uzvards) &&
-           kontakinfo.equals(klients.kontakinfo);
+     return vards.equals(klients.vards) && uzvards.equals(klients.uzvards) && kontakinfo.equals(klients.kontakinfo);
 }
 
 @Override

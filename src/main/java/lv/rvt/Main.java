@@ -7,30 +7,23 @@ public class Main {
     public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(System.in);
 
-        Gramatas book1 = new Gramatas("Grāmata A", "Autors A", 2001, "Izdevējs A", "Pieejama");
-        Gramatas book2 = new Gramatas("Grāmata B", "Autors B", 2002, "Izdevējs B", "Nepieejama");
-        Gramatas book3 = new Gramatas("Grāmata C", "Autors C", 2003, "Izdevējs C", "Pieejama");
-
-        Gramatas.addBook(book1);
-        Gramatas.addBook(book2);
-        Gramatas.addBook(book3);
-
-       /*  while (true) {
+        while (true) {
             System.out.println("\n===== Bibliotēkas Sistēma =====");
             System.out.println("1. Pievienot jaunu grāmatu");
             System.out.println("2. Parādīt visas grāmatas");
-            System.out.println("3. Meklēt grāmatu pēc nosaukuma");
+            System.out.println("3. Meklēt grāmatu");
             System.out.println("4. Pievienot jaunu klientu");
             System.out.println("5. Parādīt visus klientus");
             System.out.println("6. Klients paņem grāmatu");
             System.out.println("7. Klients atdod grāmatu");
             System.out.println("8. Dzēsts vai rediģēt grāmatu");
             System.out.println("9. Dzēst vai rediģet klientu");
+            System.out.println("10. meklēt klietus");
             System.out.println("0. Iziet");
             System.out.print("Izvēlies opciju: ");
 
             String choice = scanner.nextLine();
-            Thread.sleep(5000);
+            
 //111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
             if (choice.equals("1")) {
                 System.out.print("Ievadi nosaukumu: ");
@@ -46,32 +39,46 @@ public class Main {
         Gramatas gramata = new Gramatas(nosaukums, autors, izdosana, izdevejs, pieejamiba);
         Gramatas.addBook(gramata);
         System.out.println("Grāmata pievienota!");
-        Thread.sleep(5000);
+        
         //2222222222222222222222222222222222222222222222222222222222222222222222222222222222222
             } else if (choice.equals("2")) {
                 System.out.println("1 Nekārtot");
                 System.out.println("2 Kārtot pēc nosaukuma");
                 System.out.println("3 Kārtot pēc autora");
-                System.out.println("Izvēlies opciju: ");
+                System.out.print("Izvēlies opciju: ");
                 String izvele = scanner.nextLine();
                 
                 if (izvele.equals("1")){
-                    ArrayList<Gramatas> books = Gramatas.getBookLists();
-                    for (Gramatas g : books) {
-                        System.out.println(g);
+                    ArrayList<Gramatas> personlist = Gramatas.getBookLists();
+            
+                    System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+                    System.out.printf("| Nosaukums                    | Autors                   | Gads   | Izdevējs                 | Pieejamība  |\n");
+                    System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+                
+                    for (Gramatas gr : personlist) {
+                        System.out.printf("| %-28s | %-24s | %-6d | %-24s | %-11s |\n",
+                                gr.getname(),
+                                gr.getautors(),
+                                gr.getidosana(),
+                                gr.getizdevejs(),
+                                gr.Pieejamība()
+                        );
                     }
+                
+                    System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
                 } else if(izvele.equals("2")){
                     Gramatas.shortByName();
                 } else if(izvele.equals("3")){
                     Gramatas.shortByAuthor();
                 }
-                Thread.sleep(5000);
+                
 //3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
             } else if (choice.equals("3")) {
 
                 System.out.println("1. Meklēt pēc Grāmatas nosaukuma");
                 System.out.println("2. Meklēt pēc Autora");
                 System.out.println("3. Meklēt pēc visiem parametriem");
+                System.out.print("izdari izvēli: ");
                 String izvele1 = scanner.nextLine();
 
                 if(izvele1.equals("1")){
@@ -93,7 +100,7 @@ public class Main {
                     String izdevejs = scanner.nextLine();
                     Gramatas.findbook(new Gramatas(nosaukums, autors, izlaišana, izdevejs, izdevejs));
                 }
-                Thread.sleep(5000);
+                
 //444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
             } else if (choice.equals("4")) {
                 System.out.print("Ievadi vārdu: ");
@@ -107,14 +114,24 @@ public class Main {
                 Klients.addPerson(klients);
                 System.out.println("Klients pievienots!");
                 //5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555
-                Thread.sleep(5000);
+                
             } else if (choice.equals("5")) {
                 ArrayList<Klients> klienti = Klients.getPersonsLists();
+            
+                // Galvene
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+                System.out.printf("| Vārds                | Uzvārds              | Kontaktinformācija          |\n");
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
+            
                 for (Klients k : klienti) {
-                    System.out.println(k);
+                    System.out.printf("| %-20s | %-20s | %-27s |\n",
+                            k.getname(),
+                            k.getLastnamme(),
+                            k.getKontakinfo()
+                    );
                 }
-                //666666666666666666666666666666666666666666666666666666666666666666666666
-                Thread.sleep(5000);
+            
+                System.out.printf("+----------------------+----------------------+-----------------------------+\n");
             } else if (choice.equals("6")) {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 System.out.print("Ievadi klienta vārdu: ");
                 String vards = scanner.nextLine();
@@ -137,7 +154,7 @@ public class Main {
         
                 String result = Turetaj.takeBook(new Gramatas(nosaukums, autors,izdosana, izdevejs, "Pieejama"), new Klients(vards, uzvards, kontaktinfo), termins);
                 System.out.println(result);
-                Thread.sleep(5000);
+                
 
                 //77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
             } else if (choice.equals("7")) {
@@ -210,7 +227,7 @@ public class Main {
     Gramatas.editbook(gramata, gramata1);
     System.out.println("Grāmata mainīta");
     }
-        Thread.sleep(5000);
+        
         }else if (choice.equals("9")){
             System.out.print("Ievadi vārdu: ");
             System.out.println("1. Dzēst personu");
@@ -247,12 +264,22 @@ public class Main {
         
                 Klients klients2 = new Klients(vards, uzvards, kontakts);
                 Klients.editPerson(klients, klients2);
-            }
+            } else if (choice.equals("10")){
+                System.out.print("Ievadi vārdu: ");
+                String vards = scanner.nextLine();
+                System.out.print("Ievadi uzvārdu: ");
+                String uzvards = scanner.nextLine();
+                System.out.print("Ievadi kontaktinformāciju: ");
+                String kontakts = scanner.nextLine();
+        
+                Klients klients = new Klients(vards, uzvards, kontakts);
+                Klients.findperson(klients);
                 
+
         }
-    }*/
+    }
 
     
 }
 
-}
+}}

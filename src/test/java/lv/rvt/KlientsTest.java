@@ -134,7 +134,7 @@ public class KlientsTest {
         Klients.addPerson(client2);
 
 
-        assertTrue(Klients.findperson(client1));
-        assertTrue(Klients.findperson(client2));
+        assertTrue(Klients.findpersonbBoolea(client1));
+        assertTrue(Klients.findpersonbBoolea(client2));
     }
 }

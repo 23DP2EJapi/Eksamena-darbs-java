@@ -23,25 +23,58 @@ public class Gramatas {
         this.pieejamiba = as;
     }
 
-    public static void shortByName() throws Exception{
-
+    public static void shortByName() throws Exception {
         ArrayList<Gramatas> personlist = Gramatas.getBookLists();
-        personlist.sort(Comparator.comparing(Gramatas::getname));
-
-        for(Gramatas person : personlist){
-            System.out.println(person);
+        personlist.sort(Comparator.comparing(Gramatas::getnosaukums));
+   
+        System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+        System.out.printf("| Nosaukums                    | Autors                   | Gads   | Izdevējs                 | Pieejamība  |\n");
+        System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+    
+        for (Gramatas gr : personlist) {
+            System.out.printf("| %-28s | %-24s | %-6d | %-24s | %-11s |\n",
+                    gr.getname(),
+                    gr.getautors(),
+                    gr.getidosana(),
+                    gr.getizdevejs(),
+                    gr.Pieejamība()
+            );
         }
+    
+        System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
     }
+
+    public String getizdevejs(){
+        return this.izdevejs;
+    }
+
+    public int getidosana(){
+        return this.idosana;
+    }
+    
 
     public static void shortByAuthor() throws Exception{
 
         ArrayList<Gramatas> personlist = Gramatas.getBookLists();
         personlist.sort(Comparator.comparing(Gramatas::getautors));
 
-        for(Gramatas person : personlist){
-            System.out.println(person);
+        System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+        System.out.printf("| Nosaukums                    | Autors                   | Gads   | Izdevējs                 | Pieejamība  |\n");
+        System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
+    
+        for (Gramatas gr : personlist) {
+            System.out.printf("| %-28s | %-24s | %-6d | %-24s | %-11s |\n",
+                    gr.getname(),
+                    gr.getautors(),
+                    gr.getidosana(),
+                    gr.getizdevejs(),
+                    gr.Pieejamība()
+            );
         }
+    
+        System.out.printf("+------------------------------+--------------------------+--------+--------------------------+-------------+\n");
     }
+    
 
 
     public static void addBook(Gramatas gramata) throws Exception{
@@ -58,7 +91,7 @@ public class Gramatas {
             ArrayList<Gramatas> books = new ArrayList<>();
             String line;
             while ((line = reader.readLine()) != null) {
-                // Sadalām tikai 5 daļās, ne vairāk, ne mazāk
+
                 String[] parts = line.split(", ", 5);
                 if (parts.length < 5) {
                     System.err.println("IGNORED malformed line: " + line);
@@ -135,7 +168,7 @@ public class Gramatas {
     }
 
     public String Pieejamība(){
-        return this.pieejamiba;
+        return pieejamiba;
     }
 
     public static ArrayList<Gramatas> pieejamiba() throws Exception{
@@ -159,8 +192,7 @@ public String toString() {
 
     public static boolean deleteBook(Gramatas gramata) throws Exception {
         ArrayList<Gramatas> saraksts = getBookLists();
-        boolean removed = saraksts.remove(gramata);  // uses equals()
-    
+        boolean removed = saraksts.remove(gramata);  
         try (BufferedWriter writer = Helper.getWriter("Gramatas.csv", StandardOpenOption.TRUNCATE_EXISTING)) {
             for (Gramatas g : saraksts) {
                 writer.write(g.toString());
